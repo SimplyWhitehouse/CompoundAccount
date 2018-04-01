@@ -5,6 +5,8 @@
 			config.rate  - The interest rate of the account
 */
 function CompoundAccount(config){
+	// Default config isn't filled because we need to check for the properties either way
+	//   No sense in investing the effort
 	config = config || {};
 				
 	// Start value of the account, default $0
@@ -13,8 +15,8 @@ function CompoundAccount(config){
 	// Interest rate of the account, default 0%
 	const rate = config.hasOwnProperty("rate") ? config.rate : 0;
 
-
-	function toMoney(num){
+	// Floor to the hundredth
+	function roundToMoney(num){
 		return ~~(num*100)/100;
 	}
 
@@ -25,15 +27,16 @@ function CompoundAccount(config){
 			{number} - The amount of delta that was not applied to the principal
 	*/
 	this.step = function(delta){
-		delta = toMoney(delta) || 0;
+		delta = roundToMoney(delta) || 0;
 		
-		let newValue = toMoney(this.value*(1+rate) + delta),
+		let newValue = roundToMoney(this.value*(1+rate) + delta),
 		let remainingDelta = 0
 		
 		if (newValue < 0) {
 			remainingDelta = -newValue;
 			newValue = 0;
 		}
+
 		this.value = newValue;
 		return remainingDelta;
 	}
