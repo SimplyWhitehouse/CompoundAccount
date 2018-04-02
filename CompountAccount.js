@@ -29,7 +29,7 @@ function CompoundAccount(config){
 	this.step = function(delta){
 		delta = roundToMoney(delta) || 0;
 		
-		let newValue = roundToMoney(this.value*(1+rate) + delta),
+		let newValue = roundToMoney(this.value*(1+rate) + delta);
 		let remainingDelta = 0
 		
 		if (newValue < 0) {
