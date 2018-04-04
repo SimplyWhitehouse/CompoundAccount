@@ -10,7 +10,7 @@ function CompoundAccount(config){
 	config = config || {};
 				
 	// Start value of the account, default $0
-	this.value = config.hasOwnProperty("value") ? toMoney(config.value) : 0;
+	this.value = config.hasOwnProperty("value") ? roundToMoney(config.value) : 0;
 
 	// Interest rate of the account, default 0%
 	const rate = config.hasOwnProperty("rate") ? config.rate : 0;
