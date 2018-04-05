@@ -33,7 +33,7 @@ function CompoundAccount(config){
 		let remainingDelta = 0
 		
 		if (newValue < 0) {
-			remainingDelta = -newValue;
+			remainingDelta = newValue;
 			newValue = 0;
 		}
 
