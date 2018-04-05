@@ -13,7 +13,7 @@ function CompoundAccount(config){
 	this.value = config.hasOwnProperty("value") ? roundToMoney(config.value) : 0;
 
 	// Interest rate of the account, default 0%
-	const rate = config.hasOwnProperty("rate") ? config.rate : 0;
+	this.rate = config.hasOwnProperty("rate") ? config.rate : 0;
 
 	// Floor to the hundredth
 	function roundToMoney(num){
@@ -29,7 +29,7 @@ function CompoundAccount(config){
 	this.step = function(delta){
 		delta = roundToMoney(delta) || 0;
 		
-		let newValue = roundToMoney(this.value*(1+rate) + delta);
+		let newValue = roundToMoney(this.value*(1+this.rate) + delta);
 		let remainingDelta = 0
 		
 		if (newValue < 0) {
